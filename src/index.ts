@@ -1,9 +1,10 @@
 import * as net from "net";
-
+import { reader } from "./resp";
 const server: net.Server = net.createServer((connection: net.Socket)=>{
     
     connection.on("data",(data: Buffer)=>{
         console.log(`received data: ${data.toString('utf-8')}`)
+        reader(data)
         // Send Pong 
         connection.write('+OK\r\n')
     })
