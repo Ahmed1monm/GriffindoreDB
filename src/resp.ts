@@ -23,20 +23,23 @@ export const reader = (data: Buffer)=>{
   console.log("data content", data.toString('utf-8',0,data.length) )
   switch(datatype){
     case STRING :
-      console.log(`String`)
+      console.log(`String`);
+      stringReader(data);
       break;
     case ARRAY :
-      arrayReader(data)
+      arrayReader(data);
       break; 
     case BULK :
       console.log(`Bulk: ${data}`)
-      bulkReader(data)
+      bulkReader(data);
       break;
     case ERROR :
-      console.log(`Error`)
+      console.log(`Error`);
+      stringReader(data);
       break;
     case INTEGER :
       console.log(`Integer`)
+      integerReader(data);
       break;
   }
 }
@@ -67,4 +70,16 @@ export const bulkReader = (data: Buffer)=>{
     line += dataStr[i+2]
   }
   return line;
+}
+
+export const integerReader = (data: Buffer)=>{
+  const filteredData = data.slice(1,data.length -2);
+  const number = parseInt(filteredData.toString())
+  return number;
+}
+
+export const stringReader = (data: Buffer)=>{
+  const filteredData = data.slice(1,data.length -2);
+  const stringVal = filteredData.toString();
+  return stringVal;
 }
