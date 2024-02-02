@@ -1,12 +1,15 @@
 import * as net from "net";
-import { reader } from "./resp";
+
+import RESPSerializer from "./resp";
+import {PORT} from "./configs";
+
 const server: net.Server = net.createServer((connection: net.Socket)=>{
-    
+
     connection.on("data",(data: Buffer)=>{
         console.log(`received data: ${data.toString('utf-8')}`)
-        reader(data)
-        // Send Pong 
-        connection.write('+OK\r\n')
+        RESPSerializer.decode(data.toString())
+
+        connection.write(RESPSerializer.encodeSimpleString("PONG"));
     })
 
     connection.on("end", ()=>{
@@ -14,8 +17,6 @@ const server: net.Server = net.createServer((connection: net.Socket)=>{
     })
 });
 
-const PORT = 6379;
-
 server.listen(PORT,'localhost',undefined, ()=>{
-    console.log(`Server listining on port ${PORT}`)
+    console.log(`Server listening on port ${PORT}`)
 })
