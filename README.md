@@ -16,12 +16,12 @@ choosing TypeScript is to practice the language, so any contributions, comments 
 * Implement RESP reader 👍
 * Implement RESP writer
 * Implement basic commands
-    * PING
-    * SET
-    * GET
+    * PING 👍
+    * SET 👍
+    * GET 👍
     * HGET
     * HSET
-* Make durability usin AOF
+* Make durability using AOF
 
 
 
