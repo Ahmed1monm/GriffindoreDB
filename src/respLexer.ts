@@ -53,7 +53,7 @@ export default class RESPSerializer {
                 const length: number = parseInt(payload.substring(0, lengthEndIndex), 10);
                 const dataStartIndex: number = lengthEndIndex + 2;
                 return {name: CommandType.STRING, args: [payload.substring(dataStartIndex, dataStartIndex + length)]}
-          case RESPType.Array:
+            case RESPType.Array:
                 const elements: string[] = payload.split('\r\n').splice(1);
                 const [_, command, ...args] = elements; // TODO:: check array length
                 return {name: command, args};
