@@ -13,8 +13,7 @@ choosing TypeScript is to practice the language, so any contributions, comments 
 
 ## Progress:
 * Create TCP server 👍
-* Implement RESP reader 👍
-* Implement RESP writer
+* Implement RESP Lexer 👍
 * Implement basic commands
     * PING 👍
     * SET 👍
